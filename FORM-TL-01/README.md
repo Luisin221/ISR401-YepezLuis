@@ -3,15 +3,9 @@
 
 ## Taller de identificación y clasificación de tipos de requisitos
 
-**Universidad:** Universidad Técnica Estatal de Quevedo (UTEQ)
-
-**Carrera:** Software
-
 **Asignatura:** Ingeniería de Requisitos (ISR-401)
 
 **Estudiante:** Luis Yepez
-
-**Periodo académico:** 2026-2027
 
 **Tipo de actividad:** Formativa
 
@@ -36,8 +30,20 @@ Se necesita una distribución de LaTeX, como TeX Live o MiKTeX, que incluya:
 - babel con soporte para español.
 - Los paquetes utilizados en `main.tex`.
 
+**Archivo principal:** `main.tex`
 
-El archivo principal es `main.tex`.
+**Compilador:** pdfLaTeX
+
+**Gestor bibliográfico:** Biber
+
+**Secuencia de compilación:**
+
+```bash
+pdflatex main.tex
+biber main
+pdflatex main.tex
+pdflatex main.tex
+```
 
 El resultado será `main.pdf`, con las referencias bibliográficas procesadas mediante Biber.
 
@@ -48,4 +54,5 @@ También puede utilizarse Overleaf, configurando `main.tex` como documento princ
 - ISO/IEC/IEEE 29148:2018.
 - ISO/IEC 25010:2023.
 - Klaus Pohl, Requirements Engineering, segunda edición.
+
 
