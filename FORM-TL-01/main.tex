@@ -1,60 +1,867 @@
 
 \documentclass[12pt,a4paper]{article}
 
-% Configuración del documento
+% Configuracion general
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
 \usepackage{geometry}
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage{pdflscape}
+\usepackage{ragged2e}
+\usepackage{hyperref}
 
-\geometry{margin=2.5cm}
+% Bibliografia IEEE
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sorting=none
+]{biblatex}
+
+\addbibresource{referencias.bib}
+
+% Configuracion de pagina
+\geometry{margin=2cm}
+\hypersetup{hidelinks}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+
+\newcolumntype{P}[1]{%
+>{\RaggedRight\arraybackslash}p{#1}}
 
 \begin{document}
 
-\begin{center}
-    {\Large \textbf{Universidad Técnica Estatal de Quevedo}}\\[0.3cm]
-    \textbf{Carrera de Software}\\
-    \textbf{Ingeniería de Requisitos (ISR-401)}\\[0.5cm]
+% ==================================================
+% PORTADA
+% ==================================================
 
-    {\large \textbf{FORM-TL-01}}\\
-    Taller de identificación y clasificación de tipos de requisitos
+\begin{center}
+
+{\Large\textbf{
+Universidad Técnica Estatal de Quevedo
+}}\\[0.3cm]
+
+\textbf{Facultad de Ciencias de la Computación}\\
+
+\textbf{Carrera de Software}\\[0.4cm]
+
+\textbf{Ingeniería de Requerimientos (ISR-401)}\\[0.6cm]
+
+{\Large\textbf{FORM-TL-01}}\\[0.2cm]
+
+{\large
+Taller de identificación y clasificación
+de tipos de requisitos
+}
+
 \end{center}
 
 \vspace{0.5cm}
 
-\noindent
 \textbf{Estudiante:} Luis Yepez\\
+\textbf{Docente:} Gleiston Cicerón Guerrero Ulloa, PhD\\
 \textbf{Periodo académico:} 2026--2027\\
-\textbf{Tipo de actividad:} Formativa\\
-\textbf{Caso de estudio:} Plataforma de gestión de citas médicas
+\textbf{Semana:} 1\\
+\textbf{Actividad:} Formativa\\
+\textbf{Caso de estudio:}
+Plataforma de gestión de citas médicas
 
 \section{Objetivo}
 
-Identificar y clasificar los requisitos de una plataforma de
-gestión de citas médicas, aplicando los fundamentos de
-Ingeniería de Requisitos.
+Identificar y clasificar los requisitos de una
+plataforma de gestión de citas médicas, aplicando
+los fundamentos de Ingeniería de Requisitos,
+la norma ISO/IEC/IEEE 29148:2018 y el modelo
+de calidad ISO/IEC 25010:2023.
 
-\section{Clasificación de requisitos}
+\section{Fundamento teórico}
 
-En esta sección se analizarán los 20 enunciados
-proporcionados en el caso de estudio.
+La Ingeniería de Requisitos comprende las
+actividades necesarias para identificar,
+analizar, documentar, validar y gestionar
+las necesidades que debe satisfacer un sistema.
 
-\section{Análisis de requisitos de calidad}
+Según ISO/IEC/IEEE 29148:2018, un requisito
+expresa una necesidad junto con sus condiciones
+y restricciones asociadas. Su formulación debe
+ser precisa y permitir su análisis y
+verificación \cite{iso29148}.
 
-Se identificarán cinco requisitos de calidad
-y se propondrán redacciones verificables.
+Para este taller se consideran las siguientes
+categorías:
 
-\section{Discusión de resultados}
+\begin{itemize}
 
-Se registrarán las diferencias de clasificación
-identificadas durante la comparación con un compañero.
+\item \textbf{Funcional:}
+Describe las operaciones o comportamientos
+que debe proporcionar el sistema.
 
-\section{Referencias bibliográficas}
+\item \textbf{Calidad:}
+Establece propiedades que debe cumplir el
+producto, como rendimiento, seguridad,
+disponibilidad o capacidad de interacción.
 
-Las referencias utilizadas se incorporarán
-siguiendo el formato IEEE.
+\item \textbf{Restricción:}
+Impone límites técnicos, legales,
+organizacionales o de desarrollo.
+
+\item \textbf{Regla de dominio:}
+Representa una condición propia del negocio
+que debe respetarse al implementar el sistema.
+
+\end{itemize}
+
+Adicionalmente, los requisitos se diferencian
+según su orientación hacia el producto o el
+proceso de desarrollo y según su alcance
+de sistema o software.
+
+Esta clasificación permite distinguir
+las capacidades esperadas del producto,
+sus condiciones de calidad y las limitaciones
+que deben considerarse durante el proyecto
+\cite{pohl2025}.
+
+\section{Contexto del caso}
+
+El caso de estudio corresponde al
+Policlínico Ribera del Quevedo, una
+organización ficticia que necesita mejorar
+la administración de sus citas médicas.
+
+Actualmente, las reservas se realizan por
+teléfono o presencialmente, mediante registros
+en hojas de cálculo y cuadernos.
+
+Esta situación ocasiona dificultades para
+atender las solicitudes, errores en la
+asignación de horarios y duplicación de citas.
+
+La plataforma propuesta permitirá gestionar
+reservas, cancelaciones, reprogramaciones,
+recordatorios, agendas médicas y reportes.
+
+También deberá considerar las reglas del
+policlínico, la protección de datos personales
+y la integración con el sistema de facturación
+existente.
+
+\section{Clasificación de los requisitos}
+
+Se analizan los veinte enunciados del caso
+utilizando tres dimensiones:
+
+\begin{enumerate}
+\item Tipo de requisito.
+\item Producto o proceso.
+\item Sistema o software.
+\end{enumerate}
+
+Las justificaciones se fundamentan en la
+distinción entre necesidades, características
+y restricciones descrita en
+ISO/IEC/IEEE 29148:2018 \cite{iso29148}.
+
+En los requisitos de proceso se utiliza
+``No aplica'' cuando la dimensión
+sistema/software no corresponde directamente.
+
+% ==================================================
+% TABLA DE CLASIFICACION
+% ==================================================
+
+\begin{landscape}
+
+\footnotesize
+
+\begin{longtable}{
+P{0.8cm}
+P{8.6cm}
+P{2.5cm}
+P{1.6cm}
+P{1.6cm}
+P{9.0cm}
+}
+
+\caption{Clasificación de los veinte enunciados}\\
+
+\toprule
+
+\textbf{Cod.} &
+\textbf{Enunciado} &
+\textbf{Tipo} &
+\textbf{Orientación} &
+\textbf{Nivel} &
+\textbf{Justificación}\\
+
+\midrule
+\endfirsthead
+
+\toprule
+
+\textbf{Cod.} &
+\textbf{Enunciado} &
+\textbf{Tipo} &
+\textbf{Orientación} &
+\textbf{Nivel} &
+\textbf{Justificación}\\
+
+\midrule
+\endhead
+
+E01 &
+El paciente podrá reservar una cita eligiendo
+especialidad, médico, fecha y hora entre los
+horarios disponibles. &
+Funcional &
+Producto &
+Software &
+Describe una operación que debe ofrecer
+la aplicación para registrar citas médicas.\\
+
+\midrule
+
+E02 &
+La plataforma enviará al paciente un
+recordatorio por mensaje de texto 24 horas
+antes de su cita. &
+Funcional &
+Producto &
+Software &
+Establece un comportamiento automático
+de envío de recordatorios.\\
+
+\midrule
+
+E03 &
+La aplicación debe ser rápida. &
+Calidad &
+Producto &
+Software &
+Expresa una necesidad de rendimiento,
+pero no indica un tiempo de respuesta
+que pueda verificarse.\\
+
+\midrule
+
+E04 &
+El recepcionista podrá registrar la llegada
+del paciente que se acerca a la ventanilla. &
+Funcional &
+Producto &
+Software &
+Define una función de registro de llegada
+que debe proporcionar la plataforma.\\
+
+\midrule
+
+E05 &
+La plataforma se desarrollará en Java 21
+con base de datos PostgreSQL, tecnologías
+que domina el área de TI. &
+Restricción &
+Producto &
+Software &
+Impone tecnologías específicas para
+implementar la solución informática.\\
+
+\midrule
+
+E06 &
+El médico podrá consultar la lista de
+pacientes del día y marcar cada consulta
+como atendida. &
+Funcional &
+Producto &
+Software &
+Establece funciones para consultar
+agendas y actualizar el estado de
+las consultas médicas.\\
+
+\midrule
+
+E07 &
+Los datos de salud de los pacientes
+deben estar seguros. &
+Calidad &
+Producto &
+Software &
+Expresa una necesidad de seguridad
+de la información sin definir
+controles verificables.\\
+
+\midrule
+
+E08 &
+La aplicación móvil debe funcionar
+en teléfonos con Android 10 o superior. &
+Restricción &
+Producto &
+Software &
+Delimita las versiones del sistema
+operativo compatibles con la aplicación.\\
+
+\midrule
+
+E09 &
+Una cita cancelada con menos de cuatro
+horas de anticipación se registrará
+como inasistencia. &
+Funcional
+(regla de dominio) &
+Producto &
+Software &
+Establece una regla del policlínico
+que el software debe aplicar al
+registrar cancelaciones.\\
+
+\midrule
+
+E10 &
+La plataforma debe ser fácil de usar
+para los pacientes adultos mayores. &
+Calidad &
+Producto &
+Software &
+Expresa una necesidad de facilidad
+de interacción para un grupo de usuarios,
+sin establecer un criterio medible.\\
+
+\midrule
+
+E11 &
+El proyecto debe entregarse en un
+plazo máximo de seis meses. &
+Restricción &
+Proceso &
+No aplica &
+Limita la duración del proceso de
+desarrollo, sin describir una función
+del producto.\\
+
+\midrule
+
+E12 &
+La sesión de un usuario se cerrará
+automáticamente tras 10 minutos
+sin actividad. &
+Funcional &
+Producto &
+Software &
+Define un comportamiento automático
+de cierre de sesión que contribuye
+a la protección del acceso.\\
+
+\midrule
+
+E13 &
+El quiosco de la sala de espera leerá
+el número de cédula ingresado en su
+pantalla táctil e imprimirá un ticket
+con el número de turno. &
+Funcional &
+Producto &
+Sistema &
+Describe una función que requiere
+la interacción entre software,
+pantalla táctil e impresora.\\
+
+\midrule
+
+E14 &
+La plataforma debe estar
+siempre disponible. &
+Calidad &
+Producto &
+Sistema &
+Expresa una necesidad de disponibilidad
+sin establecer un porcentaje ni
+un periodo de medición.\\
+
+\midrule
+
+E15 &
+El director médico podrá generar
+un reporte mensual de inasistencias
+por especialidad. &
+Funcional &
+Producto &
+Software &
+Define una operación para obtener
+información estadística a partir
+de las citas registradas.\\
+
+\midrule
+
+E16 &
+Cada incremento se validará con
+el director médico al final de cada
+iteración de dos semanas. &
+Restricción &
+Proceso &
+No aplica &
+Establece una condición sobre
+la validación durante el
+proceso de desarrollo.\\
+
+\midrule
+
+E17 &
+El tratamiento de los datos personales
+de los pacientes debe cumplir la Ley
+Orgánica de Protección de Datos
+Personales del Ecuador. &
+Restricción &
+Producto &
+Sistema &
+Impone una obligación legal
+aplicable al tratamiento de
+información personal.\\
+
+\midrule
+
+E18 &
+La plataforma debe integrarse sin
+problemas con el sistema de
+facturación actual. &
+Calidad &
+Producto &
+Sistema &
+Expresa una necesidad de interoperabilidad,
+pero no establece criterios verificables
+para el intercambio de información.\\
+
+\midrule
+
+E19 &
+Si el servidor principal falla,
+la plataforma debe restablecer el
+servicio en menos de 30 minutos
+sin perder ninguna cita confirmada. &
+Calidad &
+Producto &
+Sistema &
+Establece condiciones medibles
+de recuperación del servicio y
+conservación de información.\\
+
+\midrule
+
+E20 &
+Todo cambio en el código fuente
+será revisado por otro integrante
+del equipo antes de integrarse
+a la rama principal. &
+Restricción &
+Proceso &
+No aplica &
+Define una condición obligatoria
+para el control de calidad durante
+el desarrollo del software.\\
+
+\bottomrule
+
+\end{longtable}
+
+\normalsize
+
+\end{landscape}
+
+\subsection{Observaciones de clasificación}
+
+El enunciado E09 representa una regla propia
+del dominio médico-administrativo. También
+puede analizarse como requisito funcional,
+debido a que la plataforma debe aplicar
+automáticamente la regla de cancelación.
+
+El enunciado E12 describe una función de
+cierre automático de sesión. Aunque está
+relacionada con la seguridad, su redacción
+especifica un comportamiento concreto.
+
+Los enunciados E11, E16 y E20 corresponden
+al proceso de desarrollo y no a una
+funcionalidad del producto final.
+
+\section{Clasificación de requisitos de calidad}
+
+ISO/IEC 25010:2023 proporciona un modelo
+para describir y evaluar las características
+de calidad de productos de software y
+sistemas informáticos \cite{iso25010}.
+
+La siguiente tabla relaciona los requisitos
+de calidad identificados con sus
+características y subcaracterísticas.
+
+\begin{longtable}{
+P{1.5cm}
+P{5.0cm}
+P{9.3cm}
+}
+
+\toprule
+
+\textbf{Código} &
+\textbf{Característica} &
+\textbf{Subcaracterística}\\
+
+\midrule
+\endhead
+
+E03 &
+Eficiencia del desempeño &
+Comportamiento temporal.\\
+
+E07 &
+Seguridad &
+Confidencialidad, como aspecto principal
+que debe precisarse.\\
+
+E10 &
+Capacidad de interacción &
+Inclusividad.\\
+
+E14 &
+Fiabilidad &
+Disponibilidad.\\
+
+E18 &
+Compatibilidad &
+Interoperabilidad.\\
+
+E19 &
+Fiabilidad &
+Recuperabilidad.\\
+
+\bottomrule
+
+\end{longtable}
+
+\section{Identificación de problemas de calidad}
+
+Un requisito debe formularse de manera que
+pueda interpretarse correctamente y
+verificarse mediante procedimientos
+objetivos \cite{iso29148}.
+
+Se identificaron cinco enunciados
+con problemas de ambigüedad y
+falta de verificabilidad.
+
+\begin{longtable}{
+P{1.4cm}
+P{4.0cm}
+P{10.4cm}
+}
+
+\toprule
+
+\textbf{Código} &
+\textbf{Propiedad afectada} &
+\textbf{Problema identificado}\\
+
+\midrule
+\endhead
+
+E03 &
+Verificabilidad &
+El término ``rápida'' no establece
+un tiempo de respuesta medible.\\
+
+E07 &
+Ambigüedad y verificabilidad &
+La expresión ``estar seguros''
+no especifica qué aspecto de
+seguridad debe comprobarse.\\
+
+E10 &
+Verificabilidad &
+La expresión ``fácil de usar''
+no establece una medida objetiva
+para evaluar la interacción.\\
+
+E14 &
+Ambigüedad y verificabilidad &
+``Siempre disponible'' no indica
+el porcentaje exigido ni el
+periodo de evaluación.\\
+
+E18 &
+Ambigüedad y verificabilidad &
+``Sin problemas'' no establece
+cómo se medirá el éxito de
+la integración.\\
+
+\bottomrule
+
+\end{longtable}
+
+\section{Reformulación de cinco requisitos}
+
+Los siguientes enunciados constituyen
+propuestas de especificación cuantificada.
+
+Las métricas y umbrales sugeridos deben
+ser validados con los interesados antes
+de considerarse requisitos aprobados.
+
+\subsection{E03: Rendimiento}
+
+\textbf{Enunciado original:}
+
+La aplicación debe ser rápida.
+
+\textbf{Redacción propuesta:}
+
+La plataforma deberá responder al menos
+el 95\% de las consultas de disponibilidad
+de citas en un tiempo máximo de
+2 segundos, durante una prueba
+con 300 usuarios concurrentes.
+
+\textbf{Métrica:}
+Tiempo de respuesta de consultas.
+
+\textbf{Unidad:}
+Segundos.
+
+\textbf{Umbral:}
+Al menos el 95\% de las consultas
+en 2 segundos o menos.
+
+\textbf{Verificación:}
+Prueba de rendimiento con carga
+simultánea de 300 usuarios.
+
+\subsection{E07: Seguridad}
+
+\textbf{Enunciado original:}
+
+Los datos de salud de los pacientes
+deben estar seguros.
+
+\textbf{Redacción propuesta:}
+
+La plataforma deberá impedir el acceso
+a los datos de salud de los pacientes
+en el 100\% de una muestra de
+100 solicitudes realizadas por usuarios
+sin autorización para consultar
+dicha información.
+
+\textbf{Métrica:}
+Porcentaje de solicitudes no
+autorizadas rechazadas.
+
+\textbf{Unidad:}
+Porcentaje de solicitudes.
+
+\textbf{Umbral:}
+100\% de solicitudes rechazadas.
+
+\textbf{Verificación:}
+Pruebas de control de acceso
+con perfiles sin autorización.
+
+\subsection{E10: Capacidad de interacción}
+
+\textbf{Enunciado original:}
+
+La plataforma debe ser fácil de usar
+para los pacientes adultos mayores.
+
+\textbf{Redacción propuesta:}
+
+Durante una prueba de interacción,
+al menos 16 de 20 participantes
+mayores de 60 años deberán completar
+una reserva de cita en un máximo
+de 4 minutos, sin asistencia
+de otra persona.
+
+\textbf{Métrica:}
+Cantidad de participantes que completan
+la tarea dentro del tiempo establecido.
+
+\textbf{Unidad:}
+Participantes y minutos.
+
+\textbf{Umbral:}
+Al menos 16 de 20 participantes
+en 4 minutos o menos.
+
+\textbf{Verificación:}
+Prueba de interacción con usuarios
+mayores de 60 años.
+
+\subsection{E14: Disponibilidad}
+
+\textbf{Enunciado original:}
+
+La plataforma debe estar
+siempre disponible.
+
+\textbf{Redacción propuesta:}
+
+La plataforma deberá mantener una
+disponibilidad mínima del 99,9\%
+durante cada mes calendario,
+considerando las 24 horas del día
+y los siete días de la semana.
+
+\textbf{Métrica:}
+Porcentaje de tiempo en que
+el servicio permanece operativo.
+
+\textbf{Unidad:}
+Porcentaje mensual.
+
+\textbf{Umbral:}
+Disponibilidad igual o superior
+al 99,9\%.
+
+\textbf{Verificación:}
+Monitorización periódica del servicio
+durante un mes calendario.
+
+\subsection{E18: Interoperabilidad}
+
+\textbf{Enunciado original:}
+
+La plataforma debe integrarse
+sin problemas con el sistema de
+facturación actual.
+
+\textbf{Redacción propuesta:}
+
+Durante una prueba de integración
+con el servicio web documentado del
+sistema de facturación, al menos
+99 de 100 solicitudes válidas
+de registro de cobro deberán
+procesarse correctamente, sin
+generar registros duplicados.
+
+\textbf{Métrica:}
+Porcentaje de solicitudes de integración
+procesadas correctamente.
+
+\textbf{Unidad:}
+Porcentaje de solicitudes.
+
+\textbf{Umbral:}
+Al menos el 99\% de solicitudes
+correctas y cero registros duplicados.
+
+\textbf{Verificación:}
+Pruebas de integración con
+100 solicitudes válidas al
+servicio de facturación.
+
+\section{Discusión y comparación de resultados}
+
+La actividad requiere comparar las
+clasificaciones con un compañero
+e identificar diferencias de criterio.
+
+Esta sección deberá completarse
+después de realizar la comparación
+correspondiente.
+
+Se proponen tres enunciados para
+contrastar por sus posibles
+diferencias de interpretación.
+
+\begin{longtable}{
+P{1.5cm}
+P{4.2cm}
+P{4.2cm}
+P{5.3cm}
+}
+
+\toprule
+
+\textbf{Código} &
+\textbf{Mi clasificación} &
+\textbf{Compañero} &
+\textbf{Resolución}\\
+
+\midrule
+\endhead
+
+E09 &
+Funcional, regla de dominio &
+Pendiente de comparación &
+Pendiente de discusión real.\\
+
+E12 &
+Funcional &
+Pendiente de comparación &
+Pendiente de discusión real.\\
+
+E18 &
+Calidad, interoperabilidad &
+Pendiente de comparación &
+Pendiente de discusión real.\\
+
+\bottomrule
+
+\end{longtable}
+
+\textbf{Nota:}
+No se registran discrepancias ni acuerdos
+que todavía no hayan sido contrastados
+con un compañero.
+
+\section{Conclusiones}
+
+El análisis permite diferenciar los
+requisitos que describen funciones,
+atributos de calidad y restricciones
+del proyecto.
+
+También evidencia que algunas reglas
+del dominio pueden expresarse como
+comportamientos que debe implementar
+el software.
+
+Los enunciados E03, E07, E10, E14 y E18
+requieren mayor precisión para poder
+evaluarse objetivamente.
+
+La utilización de métricas, unidades
+y umbrales contribuye a formular
+requisitos verificables.
+
+\section{Declaración de uso de IA}
+
+Para preparar este borrador se utilizó
+ChatGPT de OpenAI, modelo GPT-6,
+como apoyo en la organización
+del documento LaTeX y en la
+formulación preliminar de las
+clasificaciones y propuestas de mejora.
+
+Antes de entregar, corresponde al
+estudiante revisar y justificar
+las clasificaciones, verificar las
+referencias y realizar las
+correcciones que sean necesarias.
+
+No se presentan como realizadas
+pruebas técnicas ni discusiones
+con compañeros que no hayan ocurrido.
+
+\printbibliography[
+heading=bibintoc,
+title={Referencias bibliográficas}
+]
 
 \end{document}
