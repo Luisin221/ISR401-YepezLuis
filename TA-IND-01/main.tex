@@ -1,0 +1,224 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.35cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\addbibresource{referencias.bib}
+\hypersetup{hidelinks}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+{\Large\textbf{Universidad Técnica Estatal de Quevedo}}\par\vspace{0.3cm}
+{\large Facultad de Ciencias de la Computación}\par
+{\large Carrera de Software}\par\vspace{1.0cm}
+{\large\textbf{Ingeniería de Requisitos (ISR-401)}}\par\vspace{1.5cm}
+{\LARGE\textbf{TA-TAR-01 -- SUM}}\par\vspace{0.3cm}
+{\Large Trabajo individual: IEEE 29148 y tipos de requisitos de un sistema conocido}\par\vspace{1.0cm}
+{\Large\textbf{Sistema de estudio: Steam}}\par\vfill
+\begin{flushleft}
+\textbf{Estudiante:} Luis Yepez\\
+\textbf{Modalidad:} Individual\\
+\textbf{Periodo académico:} 2026--2027\\
+\textbf{Fecha límite indicada en el SGA:} 7 de noviembre de 2026
+\end{flushleft}
+\end{titlepage}
+
+\section{Resumen analítico de ISO/IEC/IEEE 29148:2018}
+
+\subsection*{De las necesidades a los requisitos}
+
+La Ingeniería de Requisitos busca transformar necesidades expresadas por las personas en condiciones que un sistema pueda satisfacer y que después puedan evaluarse. ISO/IEC/IEEE 29148:2018 establece orientaciones sobre el desarrollo, la documentación y la gestión de estos requisitos a lo largo del ciclo de vida \cite{iso29148,pohl2025}. Esto permite separar una idea general de una especificación útil para quienes desarrollan y comprueban un producto.
+
+En la cláusula 3.1.19, la norma trata el requisito como la expresión de una necesidad junto con las condiciones y restricciones asociadas. Esta distinción resulta necesaria porque una petición cotidiana no siempre indica lo que debe hacer el sistema. Por ejemplo, pedir que Steam ``descargue mejor'' no precisa si se espera mayor velocidad, recuperación después de un corte de red o información más clara sobre el avance. Antes de redactar un requisito hay que conocer cuál de esas necesidades se quiere resolver.
+
+La cláusula 5.2.3 explica la transformación de necesidades en requisitos. Las inquietudes iniciales de los interesados requieren análisis y refinamiento antes de convertirse en declaraciones que puedan emplearse en un proyecto. En el caso estudiado, la biblioteca, la tienda y el gestor de descargas muestran distintas interacciones; observar esas pantallas permite formular preguntas, pero no demuestra por sí solo que todos los requisitos propuestos estén implementados ni que se cumplan determinados niveles de calidad.
+
+\subsection*{Construcción de un requisito bien formado}
+
+La cláusula 5.2.4 aborda la construcción de requisitos bien formulados. La declaración debe centrarse en una característica, una condición o una capacidad esperada del sistema, y no limitarse a describir lo que desea hacer el usuario. Cuando corresponde, debe incorporar límites o condiciones medibles y admitir una comprobación posterior. La redacción también debe identificar con claridad el sujeto de la obligación. Así, es preferible escribir ``El cliente de Steam deberá mostrar el porcentaje de descarga del juego activo'' en vez de ``El usuario necesita ver cómo va la descarga''.
+
+Una formulación más precisa no significa añadir números a cualquier frase sin justificación. Los valores de tiempos, tasas o porcentajes deben originarse en necesidades verificadas o acordarse con los interesados. En este ejercicio se utilizan \textbf{umbrales propuestos para practicar la especificación}, no mediciones reales del servicio Steam. Esta separación evita presentar supuestos académicos como resultados de pruebas.
+
+\subsection*{Calidad de cada requisito}
+
+La cláusula 5.2.5 describe características que corresponden a los requisitos individuales. Un requisito debe ser \emph{necesario}, porque responde a una necesidad; \emph{apropiado}, porque está redactado al nivel de detalle adecuado; e \emph{inequívoco}, porque evita interpretaciones incompatibles. También debe ser \emph{completo}, al contener la información necesaria, y \emph{singular}, al expresar una obligación que pueda analizarse por separado. Estas condiciones reducen las dificultades de comunicación entre usuarios, analistas y desarrolladores.
+
+La misma cláusula considera la \emph{factibilidad}, la \emph{verificabilidad}, la \emph{corrección} y la \emph{conformidad} con las reglas de documentación utilizadas. Por ejemplo, prometer una descarga instantánea sería difícil de justificar porque intervienen la conexión y el tamaño del juego. En cambio, definir un tiempo máximo para reanudar una descarga después de recuperar la conexión permite preparar una prueba concreta, aunque todavía sea necesario validar el umbral elegido.
+
+Los términos ``rápido'', ``seguro'', ``fácil'' o ``siempre'' pueden ser útiles al conversar con un usuario, pero, sin condiciones adicionales, producen requisitos ambiguos o imposibles de comprobar objetivamente. La norma no debe interpretarse como una lista universal de palabras prohibidas: el problema es que la redacción permita varias interpretaciones o no proporcione criterios de verificación. Sustituir una expresión vaga por una medida, una unidad y un contexto de prueba mejora la precisión.
+
+\subsection*{Calidad del conjunto de requisitos}
+
+La cláusula 5.2.6 cambia el enfoque del requisito aislado al conjunto completo. Un conjunto debe ser \emph{completo}, \emph{consistente}, \emph{factible}, \emph{comprensible} y \emph{susceptible de validación}. Por ejemplo, no sería coherente exigir que una descarga se pueda pausar y, en otro enunciado, indicar que toda descarga debe continuar sin interrupciones. Los requisitos deben revisarse entre sí para detectar contradicciones, vacíos y expresiones duplicadas.
+
+Para Steam, analizar únicamente la búsqueda de juegos sería insuficiente si el propósito incluye comprar, incorporar títulos a la biblioteca y gestionar instalaciones. Los requisitos funcionales indican qué operaciones se esperan; los requisitos de calidad expresan cómo debe comportarse el producto; las reglas de negocio explican condiciones propias de la plataforma, y las restricciones limitan las soluciones aceptables. El modelo de ISO/IEC 25010:2023 ayuda a organizar los atributos de calidad y sus criterios de evaluación \cite{iso25010}. En conjunto, estos principios muestran que redactar requisitos no consiste en elaborar una lista extensa, sino en obtener declaraciones comprensibles, relacionadas y comprobables.
+
+\clearpage
+\section{Glosario de diez términos de la cláusula 3}
+
+Las definiciones siguientes son paráfrasis didácticas de la terminología de ISO/IEC/IEEE 29148:2018; los ejemplos se aplican al caso Steam \cite{iso29148}.
+
+\begin{enumerate}[leftmargin=*,itemsep=6pt]
+\item \textbf{Requisito (3.1.19):} expresión precisa de una necesidad con condiciones asociadas. \textit{Ejemplo:} mostrar el progreso porcentual de la descarga activa.
+\item \textbf{Elicitación de requisitos (3.1.20):} obtención organizada de necesidades de los interesados. \textit{Ejemplo:} preguntar a jugadores qué información necesitan para gestionar descargas.
+\item \textbf{Ingeniería de Requisitos (3.1.21):} disciplina que desarrolla, analiza, documenta y gestiona los requisitos. \textit{Ejemplo:} revisar conjuntamente las necesidades de la tienda, la biblioteca y las descargas.
+\item \textbf{Gestión de requisitos (3.1.22):} mantenimiento y seguimiento de los requisitos durante el proyecto. \textit{Ejemplo:} registrar el cambio de criterio para reanudar una descarga interrumpida.
+\item \textbf{Trazabilidad (3.1.23):} relación documentada de un requisito con su origen y elementos derivados. \textit{Ejemplo:} vincular el requisito de pausar descargas con la captura del gestor y su prueba de aceptación.
+\item \textbf{Matriz de trazabilidad (3.1.24):} registro organizado de esas relaciones. \textit{Ejemplo:} una tabla que una RF-04 con la evidencia 3 y el caso de prueba correspondiente.
+\item \textbf{Validación de requisitos (3.1.25):} evaluación de si los requisitos representan las necesidades correctas de los interesados. \textit{Ejemplo:} confirmar con jugadores que necesitan pausar descargas sin perder progreso.
+\item \textbf{Verificación de requisitos (3.1.26):} revisión de si los requisitos están bien formulados. \textit{Ejemplo:} comprobar que RC-01 indica operación, métrica, unidad, umbral y contexto.
+\item \textbf{Especificación de requisitos de software (3.1.27):} conjunto estructurado de requisitos del software y sus interfaces. \textit{Ejemplo:} el documento con requisitos de búsqueda, biblioteca y descargas del cliente.
+\item \textbf{Parte interesada (3.1.28):} persona u organización que tiene intereses relacionados con el sistema. \textit{Ejemplo:} jugadores que utilizan Steam y responsables de mantener la plataforma.
+\end{enumerate}
+
+\section{Sistema seleccionado y evidencias}
+
+Steam se analiza como plataforma de distribución y gestión de videojuegos. Las tres capturas propias aportadas para el ejercicio corresponden a la \textbf{biblioteca}, la \textbf{tienda} y el \textbf{gestor de descargas}. Sirven para reconocer funciones visibles, pero no certifican tiempos de respuesta, niveles de disponibilidad, medidas de seguridad ni reglas internas de la plataforma.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.91\textwidth]{evidencias/captura1.png}
+\caption{Captura propia: biblioteca de videojuegos de Steam.}
+\label{fig:biblioteca}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.91\textwidth]{evidencias/captura2.png}
+\caption{Captura propia: tienda de Steam y juegos destacados.}
+\label{fig:tienda}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.91\textwidth]{evidencias/captura3.png}
+\caption{Captura propia: progreso de una descarga.}
+\label{fig:descargas}
+\end{figure}
+
+\section{Formulación de quince requisitos propuestos}
+
+Los quince requisitos se distribuyen en \textbf{cinco tipos}: funcionales (4), calidad (5), interfaz (2), reglas de negocio o dominio (2) y restricciones (2). Son formulaciones \textbf{propuestas para el ejercicio}, no afirmaciones de cumplimiento real. Las características de calidad se organizan según ISO/IEC 25010:2023 \cite{iso25010}.
+
+\subsection{Funcionales (4)}
+\begin{description}[leftmargin=!,labelwidth=1.5cm]
+\item[RF-01.] El cliente deberá permitir buscar juegos por una palabra del título y mostrar los resultados coincidentes en la tienda.
+\item[RF-02.] El cliente deberá permitir agregar un juego a la lista de deseados y retirarlo de esa lista.
+\item[RF-03.] El cliente deberá mostrar al usuario autenticado los videojuegos asociados a su biblioteca.
+\item[RF-04.] El cliente deberá permitir pausar y reanudar la descarga de un videojuego desde el gestor de descargas.
+\end{description}
+
+\subsection{De calidad (5)}
+\begin{description}[leftmargin=!,labelwidth=1.5cm]
+\item[RC-01.] \textbf{Eficiencia del desempeño: comportamiento temporal.} En una prueba con 150 búsquedas simultáneas, al menos el 95\% de las solicitudes deberá mostrar resultados en 2 segundos o menos. \textbf{Métrica:} tiempo de respuesta; \textbf{unidad:} segundos; \textbf{umbral:} percentil 95 $\leq 2$ s.
+\item[RC-02.] \textbf{Fiabilidad: recuperabilidad.} Tras restablecerse la conexión durante una descarga interrumpida, el cliente deberá permitir reanudarla en un máximo de 30 segundos sin reiniciar la descarga completa. \textbf{Métrica:} tiempo hasta reanudación; \textbf{unidad:} segundos; \textbf{umbral:} $\leq 30$ s.
+\item[RC-03.] \textbf{Seguridad: confidencialidad.} El sistema deberá rechazar el 100\% de 100 solicitudes de prueba realizadas sin autorización para consultar información privada de otra cuenta. \textbf{Métrica:} accesos indebidos rechazados; \textbf{unidad:} porcentaje; \textbf{umbral:} 100\%.
+\item[RC-04.] \textbf{Capacidad de interacción: facilidad de aprendizaje.} En una prueba con 20 personas que no hayan utilizado el cliente, al menos 18 deberán localizar un juego de la biblioteca en un máximo de 60 segundos sin ayuda. \textbf{Métrica:} participantes que completan la tarea; \textbf{unidad:} personas y segundos; \textbf{umbral:} 18/20 en $\leq 60$ s.
+\item[RC-05.] \textbf{Fiabilidad: disponibilidad.} El servicio de consulta de la tienda deberá alcanzar una disponibilidad mínima del 99,5\% durante 30 días consecutivos. \textbf{Métrica:} tiempo operativo / tiempo total; \textbf{unidad:} porcentaje; \textbf{umbral:} $\geq 99,5\%$.
+\end{description}
+
+\subsection{De interfaz (2)}
+\begin{description}[leftmargin=!,labelwidth=1.5cm]
+\item[RI-01.] La pantalla de descargas deberá mostrar, para cada descarga activa, porcentaje de avance, tamaño recibido y velocidad de transferencia.
+\item[RI-02.] Al seleccionar un videojuego de la biblioteca, el cliente deberá abrir una vista de detalle con la opción de instalarlo o iniciarlo, según su estado local.
+\end{description}
+
+\subsection{Reglas de dominio o negocio (2)}
+\begin{description}[leftmargin=!,labelwidth=1.5cm]
+\item[RD-01.] Cuando una compra de una licencia de juego resulte confirmada, el título deberá quedar asociado a la biblioteca de la cuenta compradora, salvo que las condiciones del producto indiquen un tipo de acceso diferente.
+\item[RD-02.] Si una oferta tiene fecha de inicio y finalización, el descuento deberá aplicarse únicamente a compras confirmadas dentro de su periodo de vigencia, según la hora de referencia definida para la tienda.
+\end{description}
+
+\subsection{Restricciones (2)}
+\begin{description}[leftmargin=!,labelwidth=1.5cm]
+\item[RT-01.] La versión de cliente considerada en este ejercicio deberá ser compatible con Windows 11 de 64 bits.
+\item[RT-02.] Las pantallas principales del cliente consideradas en este ejercicio deberán ofrecer textos de navegación en español.
+\end{description}
+
+\section{Tabla de clasificación y criterios de aceptación}
+
+\small
+\begin{longtable}{L{1.3cm}L{2.8cm}L{9.4cm}}
+\caption{Criterios de aceptación propuestos para los quince requisitos.}\label{tab:criterios}\\
+\toprule
+\textbf{ID} & \textbf{Tipo} & \textbf{Criterio de aceptación comprobable}\\
+\midrule\endfirsthead
+\toprule\textbf{ID} & \textbf{Tipo} & \textbf{Criterio de aceptación comprobable}\\
+\midrule\endhead
+RF-01 & Funcional & Al introducir una palabra de un título existente, la tienda presenta resultados que la contienen.\\
+RF-02 & Funcional & Tras agregar y retirar un juego, la lista de deseados refleja ambos cambios.\\
+RF-03 & Funcional & Una cuenta autenticada puede ver en su biblioteca los juegos asociados a ella en el escenario de prueba.\\
+RF-04 & Funcional & Al pulsar Pausar, la descarga se detiene; al pulsar Reanudar, continúa desde el avance guardado.\\
+RC-01 & Calidad: tiempo & En 150 solicitudes concurrentes de prueba, al menos el 95\% responde en $\leq 2$ segundos.\\
+RC-02 & Calidad: recuperación & Tras restaurar la red, la descarga puede reanudarse en $\leq 30$ segundos sin volver a descargar desde cero.\\
+RC-03 & Calidad: seguridad & Se rechazan 100 de 100 accesos de prueba sin autorización a datos privados de otra cuenta.\\
+RC-04 & Calidad: interacción & Al menos 18 de 20 participantes nuevos encuentran un juego en su biblioteca en $\leq 60$ segundos.\\
+RC-05 & Calidad: disponibilidad & Las mediciones de 30 días arrojan disponibilidad de la tienda $\geq 99,5\%$.\\
+RI-01 & Interfaz & Con una descarga activa se muestran porcentaje, tamaño recibido y velocidad de transferencia.\\
+RI-02 & Interfaz & La vista del juego presenta Instalar si no está instalado e Iniciar si está listo para jugar.\\
+RD-01 & Regla de negocio & Una compra de prueba confirmada incorpora el título a la biblioteca de la cuenta, salvo la excepción de acceso declarada.\\
+RD-02 & Regla de negocio & Una compra de prueba dentro de la vigencia aplica el descuento y otra fuera de ella no lo aplica.\\
+RT-01 & Restricción & El cliente previsto para el ejercicio inicia y permite navegar en Windows 11 de 64 bits.\\
+RT-02 & Restricción & Tienda, biblioteca y gestor de descargas muestran sus textos principales en español.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Autoevaluación y versión corregida de cada requisito}
+
+La revisión siguiente aplica claridad, singularidad, completitud y verificabilidad como criterios orientativos de la cláusula 5.2.5 \cite{iso29148}. Las versiones iniciales se presentan como \textbf{ejemplos deliberadamente mejorables}; no son resultados de una prueba real de Steam.
+
+\begin{enumerate}[leftmargin=*,itemsep=8pt]
+\item \textbf{RF-01.} Inicial: ``Steam debe buscar juegos''. \textbf{Problema:} no indica el criterio de búsqueda. \textbf{Corregida:} El cliente deberá permitir buscar juegos por una palabra del título y mostrar las coincidencias en la tienda.
+\item \textbf{RF-02.} Inicial: ``Gestionar favoritos''. \textbf{Problema:} se desconoce qué operaciones incluye. \textbf{Corregida:} El cliente deberá permitir agregar un juego a la lista de deseados y retirarlo de esa lista.
+\item \textbf{RF-03.} Inicial: ``Mostrar juegos''. \textbf{Problema:} no identifica la colección ni el usuario. \textbf{Corregida:} El cliente deberá mostrar al usuario autenticado los videojuegos asociados a su biblioteca.
+\item \textbf{RF-04.} Inicial: ``Controlar descargas''. \textbf{Problema:} el verbo es general. \textbf{Corregida:} El cliente deberá permitir pausar y reanudar la descarga de un videojuego desde el gestor de descargas.
+\item \textbf{RC-01.} Inicial: ``La búsqueda debe ser rápida''. \textbf{Problema:} no es verificable. \textbf{Corregida:} Al menos el 95\% de 150 búsquedas concurrentes deberá responder en 2 segundos o menos.
+\item \textbf{RC-02.} Inicial: ``Las descargas no deben fallar''. \textbf{Problema:} plantea una condición absoluta. \textbf{Corregida:} Tras recuperar la conexión, la descarga deberá poder reanudarse en 30 segundos o menos sin reiniciarse desde cero.
+\item \textbf{RC-03.} Inicial: ``Las cuentas deben ser seguras''. \textbf{Problema:} no concreta qué proteger. \textbf{Corregida:} Se deberán rechazar las 100 solicitudes de una prueba de acceso sin autorización a datos privados de otra cuenta.
+\item \textbf{RC-04.} Inicial: ``La biblioteca debe ser fácil''. \textbf{Problema:} no define usuarios ni tarea. \textbf{Corregida:} Al menos 18 de 20 personas nuevas deberán encontrar un juego de su biblioteca en 60 segundos o menos sin ayuda.
+\item \textbf{RC-05.} Inicial: ``La tienda siempre funcionará''. \textbf{Problema:} ``siempre'' impide medir cumplimiento realista. \textbf{Corregida:} El servicio de consulta de la tienda deberá mantener disponibilidad de al menos 99,5\% durante 30 días consecutivos.
+\item \textbf{RI-01.} Inicial: ``Mostrar la descarga''. \textbf{Problema:} faltan elementos de la interfaz. \textbf{Corregida:} La pantalla de descargas deberá mostrar porcentaje, tamaño recibido y velocidad de transferencia de la descarga activa.
+\item \textbf{RI-02.} Inicial: ``Abrir los juegos''. \textbf{Problema:} no describe la respuesta ante una selección. \textbf{Corregida:} Al seleccionar un juego de la biblioteca, deberá aparecer una vista de detalle con Instalar o Iniciar según su estado.
+\item \textbf{RD-01.} Inicial: ``Los juegos comprados son del usuario''. \textbf{Problema:} no aclara el registro de la licencia ni sus excepciones. \textbf{Corregida:} Tras confirmarse la compra de una licencia, el juego se asociará a la cuenta compradora, salvo condiciones de acceso distintas declaradas para el producto.
+\item \textbf{RD-02.} Inicial: ``Aplicar ofertas correctamente''. \textbf{Problema:} falta una condición temporal. \textbf{Corregida:} Los descuentos se aplicarán únicamente a las compras confirmadas durante el periodo de vigencia de la oferta, de acuerdo con la hora de referencia de la tienda.
+\item \textbf{RT-01.} Inicial: ``Funcionar en PC''. \textbf{Problema:} no identifica el entorno. \textbf{Corregida:} La versión de cliente considerada deberá ser compatible con Windows 11 de 64 bits.
+\item \textbf{RT-02.} Inicial: ``Estar en nuestro idioma''. \textbf{Problema:} es ambiguo. \textbf{Corregida:} Las pantallas principales de tienda, biblioteca y descargas deberán presentar sus textos de navegación en español.
+\end{enumerate}
+
+\section{Reflexión personal: borrador para adaptar}
+
+Al tomar Steam como caso de estudio, se puede observar que una interfaz conocida ofrece muchos puntos de partida para identificar requisitos, pero las imágenes no explican todo el funcionamiento interno del sistema. En la biblioteca se ven los juegos disponibles para la cuenta; en la tienda se observan títulos, precios y promociones; y en el gestor de descargas aparecen datos de avance y velocidad. Cada pantalla permite pensar en necesidades diferentes y también en posibles problemas si esas funciones no se comportan como se espera.
+
+La parte que exige más atención es convertir expresiones generales en enunciados comprobables. No basta decir que una búsqueda será rápida o que una descarga se recuperará correctamente: es necesario indicar qué se medirá y bajo qué condiciones. Además, fijar un porcentaje o una cantidad de segundos sin consultar a los interesados solo produce una propuesta de trabajo, no un requisito definitivamente aprobado.
+
+Otra observación es que los requisitos no deben contradecirse. Las funciones, las reglas de compra, los límites técnicos y las condiciones de calidad tienen que formar un conjunto coherente. Esta actividad muestra la utilidad de IEEE 29148 para revisar la redacción y de ISO 25010 para organizar los atributos de calidad. \textbf{Antes de la entrega, este borrador debe ajustarse a la reflexión real del estudiante.}
+
+\section{Declaración de apoyo mediante IA}
+
+\textbf{Herramienta y versión:} ChatGPT de OpenAI, GPT-6.\\
+\textbf{Uso:} apoyo en la estructura LaTeX y elaboración de un borrador de ejemplos, tablas y formulaciones para revisión académica.\\
+\textbf{Verificación pendiente del estudiante:} contrastar las cláusulas y definiciones con el ejemplar institucional de ISO/IEC/IEEE 29148:2018; comprobar las referencias bibliográficas; justificar y revisar cada requisito y adaptar la reflexión a su experiencia real.\\
+\textbf{Alcance de las evidencias:} las tres capturas son del cliente Steam; no se declara haber ejecutado las pruebas o alcanzado los umbrales propuestos.
+
+\printbibliography[heading=bibintoc,title={Referencias bibliográficas}]
+\end{document}
