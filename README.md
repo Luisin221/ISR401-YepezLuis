@@ -8,11 +8,10 @@
 
 **Estudiante:** Luis Yepez
 
-**Período académico:** 2026-2027
 
 ## Descripción
 
-Repositorio académico destinado a organizar las actividades y trabajos de la asignatura Ingeniería de Requisitos.
+Repositorio académico para organizar las actividades y trabajos de la asignatura Ingeniería de Requisitos
 
 ## Actividades
 
