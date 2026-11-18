@@ -11,7 +11,7 @@
 
 \begin{document}
 
-\textbf{Declaración:} Esta es la transcripción fiel de la prueba escrita a mano el 18/11/2026 las fotografías de las hojas están en el anexo.
+\textbf{Declaración:} Esta es la transcripción fiel de la prueba escrita a mano el 18/11/2026; las fotografías de las hojas están en el anexo.
 
 \bigskip
 \hrule
@@ -25,7 +25,7 @@ Examen práctico Ingeniería de Requisitos
 
 Caso de estudio: Sistema de Monitoreo de la Cadena de Frío <<FRÍO VAC>>
 
-T1. Conceptos aplicados al caso \hfill D1*10\%
+T1. Conceptos aplicados al caso \hfill D1*10\char37{}
 
 a) Explique con sus palabras qué es un requisitos según ISO/IEC/IEE 29148 y, con esa explicación, decida si E7 Y E12 son requisitos del producto FRÍOVAC. Justifique cada decisión en una o dos líneas.
 
@@ -36,14 +36,17 @@ E7 y E12 no son requisitos de FRIOVAC, E7 menciona que solo anotan la temperatur
 b) Expliqué qué describe la especificación de los interesados(SIRS) la especificación de requisitos del sistema (SyRS) y la especificación de requisitos del software (SRS) en este proyecto. Para cada una dé un enunciado del insumo A que iría en ella y diga por qué.
 
 Especificación de los interesados: El sistema generará en formato PDF el informe mensual de temperaturas (durante cortes) de cada establecimiento.
+
 ¿Por qué?: La coordinadora de inmunizaciones está interesada por saber las temperaturas de sus establecimientos cada mes.
 
 \clearpage
 
 Especificación de requisitos del sistema: El sistema deberá seguir registrando las lecturas del temperatura durante cortes de energía eléctrica de hasta 8 horas.
+
 ¿Por qué?: Aclara que de alguna forma el sistema obligatoriamente debe funcionar incluso si hay cortes de energía.
 
 Especificación de requisitos del software: <<Necesitamos enterarnos de inmediato cuando una refrigeradora se salga del rango, aunque sea de madrugada.>>
+
 ¿Por qué?: Solicitan que el software pueda enviar notificaciones o avisos cada vez que una refrigeradora salga de su rango sin importar la hora que sea.
 
 c) Para cada hecho H1 a H5 indique a qué actividad del proceso de IR, corresponde (elicitación, análisis y negociación, especificación, validación o gestión) y sí en el marco de Pohl es una actividad centra o transversal.
@@ -60,12 +63,12 @@ H5: Pertenece a validación y gestión, y es una actividad central.
 
 \clearpage
 
-T2- Clasificación y auditoría \hfill D2*30\%
+T2. Clasificación y auditoría \hfill D2*30\char37{}
 
 a) Clasificación. Dibuje una tabla con las columnas ID, tipo, Documento y justificación, y complétela para E1 a E12. Tipo: funcional; no funcional(diga la característica de ISO/IEC 25010:2023); restricción; requisito de dominio; requisito de proceso; o no es requisito. Documento: StRS, SyRS, SRS o ninguno de ellos (diga dónde se registra entonces). La justificación cabe en una línea.
 
 \medskip
-\begin{longtable}{|p{1.2cm}|p{3.0cm}|p{3.0cm}|p{6.2cm}|}
+\begin{longtable}{|p{1.2cm}|p{2.8cm}|p{2.6cm}|p{8.4cm}|}
 \hline
 ID & Tipo & Documento y & Justificación \\ \hline
 E1 & Funcional & SRS & El software debe notificar. \\ \hline
@@ -97,15 +100,19 @@ B1 & & & \\ \hline
 
 \appendix
 \section*{Anexo: fotografías de las hojas}
-
 \begin{center}
-\includegraphics[width=0.85\textwidth,height=0.42\textheight,keepaspectratio]{evidencias/hoja-01.jpg}\\[1em]
-\includegraphics[width=0.85\textwidth,height=0.42\textheight,keepaspectratio]{evidencias/hoja-02.jpg}
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{evidencias/hoja-01.jpg}
 \end{center}
 \clearpage
 \begin{center}
-\includegraphics[width=0.85\textwidth,height=0.42\textheight,keepaspectratio]{evidencias/hoja-03.jpg}\\[1em]
-\includegraphics[width=0.85\textwidth,height=0.42\textheight,keepaspectratio]{evidencias/hoja-04.jpg}
+\includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{evidencias/hoja-02.jpg}
 \end{center}
-
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{evidencias/hoja-03.jpg}
+\end{center}
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{evidencias/hoja-04.jpg}
+\end{center}
 \end{document}
