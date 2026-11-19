@@ -41,5 +41,5 @@ Transcripción fiel de la prueba escrita a mano el 18/11/2026. Las fotografías 
 
 ### Declaración de uso de IA
 - Herramienta: Claude (Anthropic), Claude Sonnet 5.5.
-- Propósito: me ayudó con la estructura LaTeX (plantilla, tablas, anexo de fotos), con los pasos para subir al repositorio y con un borrador de lectura de mi letra que sirvió para señalarme diferencias con mi texto. No resolvió el examen: la prueba la escribí a mano en clase, sin ayuda.
-- Verificación: comparé el PDF compilado con las fotografías de mis hojas. El texto de la transcripción es el que yo escribí.
+- Propósito: me ayudó con la estructura LaTeX (plantilla, tablas, anexo de fotos), con los pasos para subir al repositorio. 
+- Verificación: comparé el PDF compilado con las fotografías de mis hojas. Todo el contenido del examen lo escribí yo manualmente viendo las fotos que había tomado.
